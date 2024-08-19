@@ -3,7 +3,7 @@ import threading
 from rest import rest
 from sock import sock
 
-p=6000
+p=6001
 h="127.0.0.1"
 
 def run_api():

@@ -11,6 +11,8 @@ api = Api(rest)
 CORS(rest)
 
 from .test import my_blueprint as test_bp
+from .login import my_blueprint as login_bp
 
 rest.register_blueprint(test_bp)
+rest.register_blueprint(login_bp)
 

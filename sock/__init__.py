@@ -18,6 +18,11 @@ def test_disconnect():
 def test_con(data):
     print(data["data"])
 
+@socketio.on("send_mess")
+def get_mess(data):
+    print("Dostałem wiadomość: " + data["data"])
+    emit("send_message", {'data': "dostałem wiadomość!"} )
+
 @sock.route("/")
 def con():
-    return render_template("index.html")
+    return render_template("login.html")

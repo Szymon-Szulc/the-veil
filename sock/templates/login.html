@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+        function get_data(){
+            data = {
+            "login": document.getElementById("login").value,
+            "room": document.getElementById("room").value,
+        }
+            fetch("http://127.0.0.1:6001/login", {method: "post", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}).then(res => {
+                if (res.ok) {
+                    
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="get_data(); return false" method="POST">
+    Wprowadź login:
+    <input type="text" id="login" name="login"><br>
+    Wprowadz numer pokoju<input type="text" id="room" name="room"><br>
+    <button type='submit'>Zaloguj się</button></form>
+</body>
+</html>
