@@ -1,13 +1,21 @@
 # ALPHA
+import threading
+from rest import rest
+from sock import sock
 
-from flask import Flask
-from flask_restful import Resource, Api
-app = Flask(__name__)
-api = Api(app)
+p=6000
+h="127.0.0.1"
 
-class Hello(Resource):
-    def get(self):
-        return {'hello': 'world'}
-api.add_resource(Hello, "/")
+def run_api():
+    rest.run(host=h, port=p)
 
-app.run(host="127.0.0.1")
+def run_socker():
+    sock.run(host=h, port=p+1)
+
+if __name__ == "__main__":
+    api = threading.Thread(target=run_api)
+    api.daemon = False
+    api.start()
+    webs = threading.Thread(target=run_socker)
+    webs.daemon = False
+    webs.start()
