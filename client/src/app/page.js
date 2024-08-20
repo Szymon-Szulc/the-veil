@@ -7,8 +7,6 @@ import { ConnectionManager } from './components/ConnectionManager';
 import { Events } from "./components/Events";
 import { LoginForm } from './components/LoginForm';
 import { MyForm } from './components/MyForm';
-
-
 export default function Home() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [fooEvents, setFooEvents] = useState([]);
@@ -21,9 +19,21 @@ export default function Home() {
   }
   function onChangeRoom(e){
     setRoom(e.target.value)
+    
+  }
+
+  function emitLeave(){
+    console.log(room, login)
+    socket.emit("leave", {"room": room, "user": login})
   }
 
   useEffect(() => {
+    const onBeforeUnload = (ev) => {
+      emitLeave()
+      ev.returnValue = "test"
+    }
+
+    window.addEventListener("beforeunload", onBeforeUnload);
 
     function onConnect() {
       setIsConnected(true);
@@ -53,6 +63,7 @@ export default function Home() {
       socket.off('disconnect', onDisconnect);
       socket.off('foo', onFooEvent);
       socket.off("success", onSuccess)
+      window.removeEventListener('beforeunload', onBeforeUnload);
     };
   }, []);
 

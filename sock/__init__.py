@@ -29,10 +29,11 @@ def on_join(data):
 
 @socketio.on('leave')
 def on_leave(data):
+    print(data)
     username = data['user']
     room = data['room']
+    emit("foo", {"msg": username + ' has left the room.'}, to=room)
     leave_room(room)
-    emit("foo", username + ' has left the room.', to=room)
 
 @socketio.on("create-something")
 def get_mess(data):
