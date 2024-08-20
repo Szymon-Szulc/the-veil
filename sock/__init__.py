@@ -1,10 +1,11 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
-
+from flask_socketio import SocketIO, emit, join_room, leave_room, send
+from flask_cors import CORS
 
 sock = Flask(__name__)
 sock.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(sock)
+socketio = SocketIO(sock, cors_allowed_origins="*")
+CORS(sock)
 
 @socketio.on('connect')
 def test_connect():
@@ -18,10 +19,25 @@ def test_disconnect():
 def test_con(data):
     print(data["data"])
 
-@socketio.on("send_mess")
+@socketio.on('join')
+def on_join(data):
+    username = data['user']
+    room = data['room']
+    join_room(room)
+    emit("success", "test")
+    emit("foo", {"msg":username + ' has entered the room.'}, to=room)
+
+@socketio.on('leave')
+def on_leave(data):
+    username = data['user']
+    room = data['room']
+    leave_room(room)
+    emit("foo", username + ' has left the room.', to=room)
+
+@socketio.on("create-something")
 def get_mess(data):
-    print("Dostałem wiadomość: " + data["data"])
-    emit("send_message", {'data': "dostałem wiadomość!"} )
+    print("Dostałem wiadomość: " + data["message"])
+    emit("foo", {"msg":"{}: {}".format(data["login"], data["message"]), "login":data["login"]} , to=data["room"])
 
 @sock.route("/")
 def con():
