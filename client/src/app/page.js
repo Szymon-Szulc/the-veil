@@ -69,7 +69,10 @@ export default function Home() {
 
   return (
     <div className="App">
+      <div className="InfoBox">
+      <div className={isConnected ? "online" : "offline"}></div>
       <center className={inRoom == false ? "hide" : "show"}>Logged as: {login}. In room: {room}</center>
+      </div>
       <div className={inRoom == false ? "hide" : "show"}><Events  events={ fooEvents } my_login={login} /></div>
       <MyForm inRoom={inRoom} login={login} onChangeLogin={onChangeLogin} room={room} onChangeRoom={onChangeRoom}/>
       

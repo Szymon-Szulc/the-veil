@@ -154,3 +154,27 @@ button{
 .hide{
   display: none;
 }
+.msg-admin{
+  color: #838383;
+}
+.online::before{
+  content:"\A";
+  border-radius:50%;
+  background-color: green;
+  width: 15px;
+  height: 15px;
+  margin: 10px;
+  display:inline-block;
+}
+.InfoBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offline{
+  border-radius: 100%;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  margin: 10px;
+}

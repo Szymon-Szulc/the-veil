@@ -1,4 +1,5 @@
 import React, { useEffect} from 'react';
+import { Message } from './Message';
 
 export function Events({ events, my_login }) {
     const element = document.getElementById("el")
@@ -10,7 +11,7 @@ export function Events({ events, my_login }) {
     <ul>
     {
       events.map((event, index) =>
-        <li key={ index } className={event.login == my_login ? "msg-my": "msg-other"}>{ event.msg }</li>
+        <Message msg={event.msg} login={event.login} my_login={my_login == event.login} index={index} admin={event.admin}/>
       )
     }
     </ul>

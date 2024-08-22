@@ -25,7 +25,7 @@ def on_join(data):
     room = data['room']
     join_room(room)
     emit("success", "test")
-    emit("foo", {"msg":username + ' has entered the room.'}, to=room)
+    emit("foo", {"msg":"{} dołączył do pokoju!".format(username), "admin": True, "login": "admin"}, to=room)
 
 @socketio.on('leave')
 def on_leave(data):
@@ -38,7 +38,7 @@ def on_leave(data):
 @socketio.on("create-something")
 def get_mess(data):
     print("Dostałem wiadomość: " + data["message"])
-    emit("foo", {"msg":"{}: {}".format(data["login"], data["message"]), "login":data["login"]} , to=data["room"])
+    emit("foo", {"msg":data["message"], "admin": False, "login": data["login"]} , to=data["room"])
 
 @sock.route("/")
 def con():
