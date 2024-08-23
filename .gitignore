@@ -2,3 +2,5 @@
 __pycache__
 client_ws_test/node_modules
 client_ws_test/.next
+client/node_modules
+client/.next
