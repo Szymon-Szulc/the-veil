@@ -22,11 +22,6 @@ export default function Home() {
     
   }
 
-  function emitLeave(){
-    console.log(room, login)
-    socket.emit("leave", {"room": room, "user": login})
-  }
-
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
