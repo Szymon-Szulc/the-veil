@@ -28,13 +28,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const onBeforeUnload = (ev) => {
-      emitLeave()
-      ev.returnValue = "test"
-    }
-
-    window.addEventListener("beforeunload", onBeforeUnload);
-
     function onConnect() {
       setIsConnected(true);
     }
@@ -63,7 +56,6 @@ export default function Home() {
       socket.off('disconnect', onDisconnect);
       socket.off('foo', onFooEvent);
       socket.off("success", onSuccess)
-      window.removeEventListener('beforeunload', onBeforeUnload);
     };
   }, []);
 
