@@ -1,4 +1,4 @@
 
 __pycache__
-client/node_modules
-client/.next
+client_ws_test/node_modules
+client_ws_test/.next
