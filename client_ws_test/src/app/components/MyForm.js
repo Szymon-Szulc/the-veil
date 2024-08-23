@@ -30,7 +30,7 @@ if (inRoom == true){
     return (
         <div className={"msg-foot"}>
         <form onSubmit={ onSubmit }>
-          <div><input claclassNamess={"msg-field"} onChange={ e => setValue(e.target.value) } value={value} /></div>
+          <div><input classNamess={"msg-field"} onChange={ e => setValue(e.target.value) } value={value} /></div>
     
           <div className={"msg-nav"}><button className={"msg-send"} type="submit" disabled={ isLoading }>Wyślij</button></div>
         </form>
