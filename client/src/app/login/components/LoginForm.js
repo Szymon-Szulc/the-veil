@@ -1,5 +1,5 @@
 import React from "react";
-import { classInput, classButton, classLabel } from "../style/style";
+import { classInput, classButton, classLabel } from "../../style/style";
 
 export function LoginForm({ OnChangeEmail, OnChangePassword, OnSubmit }) {
   return (
@@ -7,7 +7,7 @@ export function LoginForm({ OnChangeEmail, OnChangePassword, OnSubmit }) {
       {/* // Głowny div formularza logowania */}
       <div className="flex w-full h-full bg-slate-500 bg-opacity-10 p-5 rounded-md ">
         <form onSubmit={OnSubmit} className="w-full">
-          <div className="mb-6">
+          <div className="mb-6 flex justify-center flex-wrap">
             <label htmlFor="Email" className={classLabel}>
               E-Mail
             </label>
@@ -18,7 +18,7 @@ export function LoginForm({ OnChangeEmail, OnChangePassword, OnSubmit }) {
               placeholder="example@email.com"
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 flex justify-center flex-wrap">
             <label htmlFor="Password" className={classLabel}>
               Hasło
             </label>
@@ -30,10 +30,10 @@ export function LoginForm({ OnChangeEmail, OnChangePassword, OnSubmit }) {
               placeholder="password"
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 flex justify-center">
             {/* Button */}
             <button type="submit" className={classButton}>
-              Zaloguj się!
+              Zaloguj się
             </button>
           </div>
         </form>
