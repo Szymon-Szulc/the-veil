@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { LoginForm } from "./components/LoginForm";
 import React, { useState } from "react";
@@ -7,7 +7,7 @@ import React, { useState } from "react";
 export default function Home() {
   const [Email, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
-
+  const router = useRouter()
   function LoginSubmit(event) {
     event.preventDefault();
     fetch(`http://test.the-veil.pl:6001/login?email=${Email}&password=${Password}`, {
@@ -15,7 +15,11 @@ export default function Home() {
       mode: "cors",
       headers: { "Content-type": "application/json" },
     }).then((res) => {
-      return res.json();
+      console.log(res.ok)
+      if (res.ok){
+        router.push('/dashboard', { scroll: false })
+      }
+      
     }).then(res => {
       console.log(res)
     })

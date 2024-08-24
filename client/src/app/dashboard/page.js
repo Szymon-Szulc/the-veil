@@ -6,7 +6,7 @@ export default function Dashboard() {
   const router = useRouter()
   return (
     <main className=" w-screen h-screen  flex items-center justify-center">
-      
+        
     </main>
   );
 }
